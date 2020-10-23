@@ -1,0 +1,125 @@
+#define GARDEN_TREE_H
+#include<iostream>
+#include <string>
+#include<conio.h>
+using namespace std;
+class Garden_Tree
+{
+protected:
+    int Number;
+    string name;
+    int adge;
+    int plod;
+public:
+ 
+    virtual void add() = 0;
+    string getName()
+    {
+        return name;
+    }
+    virtual void show() = 0;
+    virtual bool IsApple() { return false; }
+    
+};
+ 
+class Apple : public Garden_Tree
+{
+ 
+    
+public:
+    
+    
+    void add()
+    {
+        cout << "Введите вид Яблони: ";
+        cin >> name;
+        cout << "Введите возраст: ";
+        cin >> adge;
+        cout << "Введите количество плодов: ";
+        cin >> plod;
+    }
+    
+    void show()
+    {
+        cout << name << "\t" << " Возраст   :" << adge << " Количество плодов   :" << plod << endl;
+    }
+    bool IsApple() { return true; }
+    void peres(int l, int m)
+    {
+        if (adge > l && plod < m)
+        {
+            cout  << name << "\t" << " Возраст   :" << adge << " Количество плодов   :" << plod << endl;
+        }
+    }
+};
+ 
+class Pear : public Garden_Tree
+{
+ 
+public:
+    void add()
+    {
+ 
+        cout << "Введите вид Яблони: ";
+        cin >> name;
+        cout << "Введите возраст: ";
+        cin >> adge;
+        cout << "Введите количество плодов: ";
+        cin >> plod;
+    }
+    
+    void show()
+    {
+        
+        cout << name << "\t" << " Возраст   :" << adge << " Количество плодов   :" << plod << endl;
+    }
+    void peres(int l,int m)
+    {
+        if (adge > l && plod < m)
+        {
+            cout  << name << "\t" << " Возраст   :" << adge << " Количество плодов   :" << plod << endl;
+        }
+    }
+};
+ 
+ 
+ 
+int main()
+{
+    
+    setlocale(LC_ALL, "");
+    int n1, n2;
+    Garden_Tree *list[6];
+    Apple*list1[3];
+    Pear*list2[3];
+    for (int i = 0; i<3; i++)
+    {
+        list[i] = new Apple;
+        cout << "Ввод " << i + 1 << " яблони" << endl;
+        list[i]->add();
+    }
+    cout << endl;
+    for (int i = 3; i<6; i++)
+    {
+        list[i] = new Pear;
+        cout << "Ввод " << i + 1 - 3 << " груши" << endl;
+        list[i]->add();
+    }
+ 
+    cout << endl << "Вывод всего массива" << endl;
+    for (int i = 0; i<6; i++) list[i]->show();
+ 
+    /*cout << endl << "Вывод только яблоневых деревьев" << endl;
+    for (int i = 0; i<6; i++) if (list[i]->IsApple()) list[i]->show();
+    return 0;
+ 
+    cout << endl << "Вывод только грушевых деревьев" << endl;
+    for (int i = 0; i<6; i++) if (!list[i]->IsApple()) list[i]->show();*/
+    cout << "Введите возраст = "; cin >> n1;
+    cout << "Введите плодоношение = "; cin >> n2;
+    for (int i = 0; i < 6; i++)
+    {
+        list1[i]->peres(n1, n2);
+    }
+    return 0;
+}
